@@ -10,6 +10,7 @@ const checkFields = (req, res, next) => {
             errors: errors.mapped()
         });
     }
+    ;
     next();
 };
 exports.checkFields = checkFields;

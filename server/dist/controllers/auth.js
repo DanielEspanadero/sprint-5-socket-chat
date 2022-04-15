@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createUser = void 0;
+exports.login = exports.createUser = void 0;
 const user_1 = require("../models/user");
 const bcrypt_1 = require("bcrypt");
 const generate_jwt_1 = require("../helpers/generate-jwt");
@@ -47,4 +47,41 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     ;
 });
 exports.createUser = createUser;
+const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email, password } = req.body;
+    try {
+        // Check if the user exists with the email
+        const userDB = yield user_1.User.findOne({ email });
+        if (!userDB) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'User does not exist'
+            });
+        }
+        // Validate password
+        const validPassword = (0, bcrypt_1.compareSync)(password, userDB.password);
+        if (!validPassword) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'Invalid password'
+            });
+        }
+        ;
+        // Get token
+        const token = yield (0, generate_jwt_1.generateAccessToken)(userDB.id);
+        res.status(200).json({
+            ok: true,
+            user: userDB,
+            token
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            ok: false,
+            msg: 'Internal error'
+        });
+    }
+    ;
+});
+exports.login = login;
 //# sourceMappingURL=auth.js.map
