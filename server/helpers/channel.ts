@@ -24,7 +24,7 @@ export const createChannel = async (payload: any) => {
     };
 };
 
-export async function getUserName(req: Request, res: Response) {
+export const getUserName = async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
         const user = await User.findById(id);
@@ -43,4 +43,9 @@ export async function getUserName(req: Request, res: Response) {
         console.log(err);
         return res.status(500).json(err);
     };
+};
+
+export const getChannels = async () => {
+    const channels = await Channel.find();
+    return channels;
 };

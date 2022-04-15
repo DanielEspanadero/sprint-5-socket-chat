@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUserName = exports.createChannel = void 0;
+exports.getChannels = exports.getUserName = exports.createChannel = void 0;
 const channel_1 = require("../models/channel");
 const user_1 = require("../models/user");
 const createChannel = (payload) => __awaiter(void 0, void 0, void 0, function* () {
@@ -33,29 +33,31 @@ const createChannel = (payload) => __awaiter(void 0, void 0, void 0, function* (
     ;
 });
 exports.createChannel = createChannel;
-function getUserName(req, res) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const id = req.params.id;
-            const user = yield user_1.User.findById(id);
-            if (!user) {
-                return res.status(400).json({
-                    ok: false,
-                    msg: 'User not found'
-                });
-            }
-            return res.json({
-                ok: true,
-                user
+const getUserName = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.params.id;
+        const user = yield user_1.User.findById(id);
+        if (!user) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'User not found'
             });
         }
-        catch (err) {
-            console.log(err);
-            return res.status(500).json(err);
-        }
-        ;
-    });
-}
+        return res.json({
+            ok: true,
+            user
+        });
+    }
+    catch (err) {
+        console.log(err);
+        return res.status(500).json(err);
+    }
+    ;
+});
 exports.getUserName = getUserName;
-;
+const getChannels = () => __awaiter(void 0, void 0, void 0, function* () {
+    const channels = yield channel_1.Channel.find();
+    return channels;
+});
+exports.getChannels = getChannels;
 //# sourceMappingURL=channel.js.map
