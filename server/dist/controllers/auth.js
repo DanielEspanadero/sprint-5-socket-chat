@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.renewToken = exports.login = exports.createUser = void 0;
+exports.googleLogin = exports.renewToken = exports.login = exports.createUser = void 0;
 const user_1 = require("../models/user");
 const bcrypt_1 = require("bcrypt");
 const generate_jwt_1 = require("../helpers/generate-jwt");
@@ -97,4 +97,7 @@ const renewToken = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     });
 });
 exports.renewToken = renewToken;
+const googleLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+});
+exports.googleLogin = googleLogin;
 //# sourceMappingURL=auth.js.map
