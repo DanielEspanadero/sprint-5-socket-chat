@@ -19,6 +19,7 @@ const config_1 = require("../database/config");
 // import Sockets from './sockets';
 // Routes
 const auth_1 = __importDefault(require("../routes/auth"));
+const message_1 = __importDefault(require("../routes/message"));
 class Server {
     constructor() {
         this.path = {
@@ -43,7 +44,7 @@ class Server {
     }
     routes() {
         this.app.use(this.path.auth, auth_1.default);
-        this.app.use(this.path.message, messageRouter);
+        this.app.use(this.path.message, message_1.default);
     }
     setSockets() {
         // new Sockets(this.io);
