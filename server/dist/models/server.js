@@ -18,11 +18,11 @@ const socket_io_1 = require("socket.io");
 const config_1 = require("../database/config");
 // import Sockets from './sockets';
 // Routes
-const prueba_1 = __importDefault(require("../routes/prueba"));
+const auth_1 = __importDefault(require("../routes/auth"));
 class Server {
     constructor() {
         this.path = {
-            prueba: '/prueba'
+            auth: '/api/login',
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT;
@@ -41,7 +41,7 @@ class Server {
         });
     }
     routes() {
-        this.app.use(this.path.prueba, prueba_1.default);
+        this.app.use(this.path.auth, auth_1.default);
     }
     setSockets() {
         // new Sockets(this.io);

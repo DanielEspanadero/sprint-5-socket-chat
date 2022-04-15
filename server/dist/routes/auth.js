@@ -21,7 +21,7 @@ router.post('/', [
     (0, express_validator_1.check)('password', 'Password is required').not().isEmpty(),
     validate_fields_1.checkFields
 ], auth_1.login);
-// Revalidar Token
+// Renew Token
 router.get('/renew', validate_jwt_1.validateToken, auth_1.renewToken);
 exports.default = router;
 //# sourceMappingURL=auth.js.map

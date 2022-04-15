@@ -7,7 +7,7 @@ import cors from "cors";
 
 
 // Routes
-import routerPrueba from '../routes/prueba';
+import authRouter from '../routes/auth';
 
 class Server {
     private app: Application;
@@ -15,7 +15,7 @@ class Server {
     private server: HttpServer;
     private io: socketio;
     private path = {
-        prueba: '/prueba'
+        auth: '/api/login',
     }
 
     constructor() {
@@ -39,7 +39,7 @@ class Server {
     }
 
     routes() {
-        this.app.use(this.path.prueba, routerPrueba);
+        this.app.use(this.path.auth, authRouter);
     }
 
     private setSockets() {

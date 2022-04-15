@@ -26,7 +26,7 @@ router.post('/', [
     checkFields
 ], login);
 
-// Revalidar Token
+// Renew Token
 router.get('/renew', validateToken, renewToken);
 
 export default router;
