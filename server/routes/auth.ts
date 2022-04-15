@@ -19,3 +19,14 @@ router.post('/new', [
     checkFields
 ], createUser);
 
+// Login
+router.post('/', [
+    check('email', 'Email is required').isEmail(),
+    check('password', 'Password is required').not().isEmpty(),
+    checkFields
+], login);
+
+// Revalidar Token
+router.get('/renew', validateToken, renewToken);
+
+export default router;
