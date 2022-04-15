@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userDisconnected = exports.userConnected = void 0;
+exports.getUsers = exports.userDisconnected = exports.userConnected = void 0;
 const user_1 = require("../models/user");
 const userConnected = (uid) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield user_1.User.findById(uid);
@@ -25,4 +25,11 @@ const userDisconnected = (uid) => __awaiter(void 0, void 0, void 0, function* ()
     return user;
 });
 exports.userDisconnected = userDisconnected;
+const getUsers = () => __awaiter(void 0, void 0, void 0, function* () {
+    const users = yield user_1.User
+        .find()
+        .sort('-online');
+    return users;
+});
+exports.getUsers = getUsers;
 //# sourceMappingURL=socket.js.map
