@@ -3,8 +3,7 @@ import { createServer, Server as HttpServer } from 'http';
 import { Server as socketio } from 'socket.io';
 import { dbConnection } from '../database/config';
 import cors from 'cors';
-// import Sockets from './sockets';
-
+import Sockets from './sockets';
 
 // Routes
 import authRouter from '../routes/auth';
@@ -28,8 +27,14 @@ class Server {
         this.server = createServer(this.app);
 
         // Configuraciones de sockets
-        this.io = new socketio(this.server, { /* options */ });
+        this.io = new socketio(this.server, {
+            cors: {
+                origin: "*",
+                methods: ["GET", "POST"]
+            }
+        });
 
+        this.middlewares();
         this.connectDB();
         this.routes();
         this.sockets();
@@ -40,13 +45,30 @@ class Server {
         await dbConnection();
     }
 
+    middlewares(){
+        this.app.use(cors({
+            allowedHeaders: [
+                'Origin',
+                'X-Requested-With',
+                'Content-Type',
+                'Accept',
+                'X-Access-Token',
+            ],
+            credentials: true,
+            methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
+            origin: '*',
+            preflightContinue: false,
+        }));
+        this.app.use(express.json());
+    }
+
     routes() {
         this.app.use(this.path.auth, authRouter);
         this.app.use(this.path.message, messageRoute);
     }
 
     private setSockets() {
-        // new Sockets(this.io);
+        new Sockets(this.io);
     }
 
     // Initializing sockets

@@ -16,7 +16,8 @@ const express_1 = __importDefault(require("express"));
 const http_1 = require("http");
 const socket_io_1 = require("socket.io");
 const config_1 = require("../database/config");
-// import Sockets from './sockets';
+const cors_1 = __importDefault(require("cors"));
+const sockets_1 = __importDefault(require("./sockets"));
 // Routes
 const auth_1 = __importDefault(require("../routes/auth"));
 const message_1 = __importDefault(require("../routes/message"));
@@ -31,7 +32,13 @@ class Server {
         // Http server
         this.server = (0, http_1.createServer)(this.app);
         // Configuraciones de sockets
-        this.io = new socket_io_1.Server(this.server, { /* options */});
+        this.io = new socket_io_1.Server(this.server, {
+            cors: {
+                origin: "*",
+                methods: ["GET", "POST"]
+            }
+        });
+        this.middlewares();
         this.connectDB();
         this.routes();
         this.sockets();
@@ -42,12 +49,28 @@ class Server {
             yield (0, config_1.dbConnection)();
         });
     }
+    middlewares() {
+        this.app.use((0, cors_1.default)({
+            allowedHeaders: [
+                'Origin',
+                'X-Requested-With',
+                'Content-Type',
+                'Accept',
+                'X-Access-Token',
+            ],
+            credentials: true,
+            methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
+            origin: '*',
+            preflightContinue: false,
+        }));
+        this.app.use(express_1.default.json());
+    }
     routes() {
         this.app.use(this.path.auth, auth_1.default);
         this.app.use(this.path.message, message_1.default);
     }
     setSockets() {
-        // new Sockets(this.io);
+        new sockets_1.default(this.io);
     }
     // Initializing sockets
     sockets() {
