@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createUser = void 0;
 const user_1 = require("../models/user");
 const bcrypt_1 = require("bcrypt");
+const generate_jwt_1 = require("../helpers/generate-jwt");
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { firstName, lastName, email, password } = req.body;
@@ -29,6 +30,13 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         user.password = (0, bcrypt_1.hashSync)(password, salt);
         // Save user in DB
         yield user.save();
+        // Get token
+        const token = yield (0, generate_jwt_1.generateAccessToken)(user.id);
+        res.status(200).json({
+            ok: true,
+            user,
+            token
+        });
     }
     catch (error) {
         res.status(500).json({

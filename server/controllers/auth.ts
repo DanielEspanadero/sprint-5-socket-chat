@@ -2,6 +2,7 @@ import {Response, Request} from 'express';
 import { User } from '../models/user';
 import { genSaltSync, hashSync, compareSync, hash } from "bcrypt";
 import mongoose from 'mongoose';
+import { generateAccessToken } from '../helpers/generate-jwt';
 
 export const createUser = async (req: Request, res: Response) => {
     try {
@@ -24,6 +25,15 @@ export const createUser = async (req: Request, res: Response) => {
 
         // Save user in DB
         await user.save();
+
+        // Get token
+        const token = await generateAccessToken(user.id);
+
+        res.status(200).json({
+            ok: true,
+            user,
+            token
+        });
 
     } catch (error: any) {
         res.status(500).json({
