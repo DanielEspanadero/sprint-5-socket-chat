@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getPersonalConversation = void 0;
+exports.getChannelConversation = exports.getPersonalConversation = void 0;
 const message_1 = require("../models/message");
 const getPersonalConversation = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const myId = req.uid;
@@ -28,4 +28,15 @@ const getPersonalConversation = (req, res) => __awaiter(void 0, void 0, void 0, 
     });
 });
 exports.getPersonalConversation = getPersonalConversation;
+const getChannelConversation = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const channel = req.params.from;
+    const last10 = yield message_1.Message.find({ to: channel })
+        .sort({ createdAt: -1 })
+        .limit(10);
+    res.json({
+        ok: true,
+        messages: last10
+    });
+});
+exports.getChannelConversation = getChannelConversation;
 //# sourceMappingURL=message.js.map

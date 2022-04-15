@@ -18,3 +18,15 @@ export const getPersonalConversation = async (req: any, res: any) => {
         messages: last10
     });
 };
+
+export const getChannelConversation = async (req: any, res: any) => {
+    const channel = req.params.from;
+    const last10 = await Message.find({ to: channel })
+        .sort({ createdAt: -1 })
+        .limit(10);
+
+    res.json({
+        ok: true,
+        messages: last10
+    });
+};
