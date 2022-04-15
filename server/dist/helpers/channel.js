@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getChannel = exports.getChannels = exports.getUserName = exports.createChannel = void 0;
+exports.channelsList = exports.getChannel = exports.getChannels = exports.getUserName = exports.createChannel = void 0;
 const channel_1 = require("../models/channel");
 const user_1 = require("../models/user");
 const createChannel = (payload) => __awaiter(void 0, void 0, void 0, function* () {
@@ -88,4 +88,14 @@ const getChannel = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     ;
 });
 exports.getChannel = getChannel;
+const channelsList = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const channels = yield channel_1.Channel.find();
+        return channels;
+    }
+    catch (err) {
+        console.log(err);
+    }
+});
+exports.channelsList = channelsList;
 //# sourceMappingURL=channel.js.map

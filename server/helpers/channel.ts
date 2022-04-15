@@ -75,3 +75,12 @@ export const getChannel = async (req: Request, res: Response) => {
         return false;
     };
 };
+
+export const channelsList = async () => {
+    try {
+        const channels = await Channel.find();
+        return channels;
+    } catch (err) {
+        console.log(err);
+    }
+};
