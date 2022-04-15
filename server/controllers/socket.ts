@@ -9,3 +9,11 @@ export const userConnected = async (uid: any) => {
 
     return user;
 };
+
+export const userDisconnected = async (uid: any) => {
+    const user: any = await User.findById(uid);
+    user.online = false;
+    await user.save();
+
+    return user;
+}
