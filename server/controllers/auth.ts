@@ -83,3 +83,19 @@ export const login = async (req: Request, res: Response) => {
         });
     };
 };
+
+export const renewToken = async (req: any, res: Response) => {
+    const uid: any = req.uid;
+
+    // Get a new token
+    const token = await generateAccessToken(uid);
+
+    // Get user by uid
+    const user = await User.findById(uid);
+
+    res.status(200).json({
+        ok: true,
+        user,
+        token
+    });
+};

@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.login = exports.createUser = void 0;
+exports.renewToken = exports.login = exports.createUser = void 0;
 const user_1 = require("../models/user");
 const bcrypt_1 = require("bcrypt");
 const generate_jwt_1 = require("../helpers/generate-jwt");
@@ -84,4 +84,17 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     ;
 });
 exports.login = login;
+const renewToken = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const uid = req.uid;
+    // Get a new token
+    const token = yield (0, generate_jwt_1.generateAccessToken)(uid);
+    // Get user by uid
+    const user = yield user_1.User.findById(uid);
+    res.status(200).json({
+        ok: true,
+        user,
+        token
+    });
+});
+exports.renewToken = renewToken;
 //# sourceMappingURL=auth.js.map
