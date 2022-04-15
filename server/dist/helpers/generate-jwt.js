@@ -33,19 +33,16 @@ const generateAccessToken = (uid = '') => {
     });
 };
 exports.generateAccessToken = generateAccessToken;
-const checkJWT = (token = '') => __awaiter(void 0, void 0, void 0, function* () {
+const checkJWT = (token) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        if (token.length < 10) {
-            return null;
-        }
-        ;
-        const { uid } = jsonwebtoken_1.default.verify(token, process.env.SECRETORPRIVATEKEY);
-        return [true, uid];
+        const payload = jsonwebtoken_1.default.verify(token, process.env.JWT_KEY);
+        return [true, payload.uid];
     }
     catch (error) {
-        console.log(error);
+        console.log("err", error.message, token);
         return [false, null];
     }
+    ;
 });
 exports.checkJWT = checkJWT;
 //# sourceMappingURL=generate-jwt.js.map

@@ -1,4 +1,4 @@
-import jwt, { JwtPayload } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import 'dotenv/config';
 import { User } from '../models/user';
 
@@ -20,17 +20,20 @@ export const generateAccessToken = (uid = '') => {
     });
 };
 
-export const checkJWT = async (token: string = '') => {
-    try {
-
-        if (token.length < 10) {
-            return null;
-        };
-        const { uid }: any = jwt.verify(token, process.env.SECRETORPRIVATEKEY as string);
-
-        return [true, uid]
-    } catch (error) {
-        console.log(error);
-        return [false, null];
-    }
+interface UserPayload {
+    uid: string;
 }
+
+export const checkJWT = async (token: string) => {
+    try {
+        const payload = jwt.verify(token,
+            process.env.JWT_KEY as string
+        ) as UserPayload;
+
+        return [true, payload.uid];
+
+    } catch (error: any) {
+        console.log("err", error.message, token);
+        return [false, null];
+    };
+};
