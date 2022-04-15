@@ -66,6 +66,7 @@ class Sockets {
             }));
         }));
     }
+    ;
 }
 exports.default = Sockets;
 //# sourceMappingURL=sockets.js.map

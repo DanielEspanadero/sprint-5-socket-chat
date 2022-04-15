@@ -70,8 +70,6 @@ export default class Sockets {
                 this.io.emit('users-list', await getUsers())
                 this.io.emit('users-list', await channelsList());
             });
-
-        })
-
-    }
-}
+        });
+    };
+};
