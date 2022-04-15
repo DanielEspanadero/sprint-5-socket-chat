@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getChannels = exports.getUserName = exports.createChannel = void 0;
+exports.getChannel = exports.getChannels = exports.getUserName = exports.createChannel = void 0;
 const channel_1 = require("../models/channel");
 const user_1 = require("../models/user");
 const createChannel = (payload) => __awaiter(void 0, void 0, void 0, function* () {
@@ -60,4 +60,32 @@ const getChannels = () => __awaiter(void 0, void 0, void 0, function* () {
     return channels;
 });
 exports.getChannels = getChannels;
+const getChannel = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const name = req.params.name;
+        const existingChannel = yield channel_1.Channel.findOne({ name });
+        if (existingChannel) {
+            return res.status(400).json({
+                ok: false,
+                message: name,
+            });
+        }
+        else {
+            return res.status(200).json({
+                ok: true,
+                message: name,
+            });
+        }
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).json({
+            ok: false,
+            msg: "Something went wrong"
+        });
+        return false;
+    }
+    ;
+});
+exports.getChannel = getChannel;
 //# sourceMappingURL=channel.js.map

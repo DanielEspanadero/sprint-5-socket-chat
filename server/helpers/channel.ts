@@ -49,3 +49,29 @@ export const getChannels = async () => {
     const channels = await Channel.find();
     return channels;
 };
+
+export const getChannel = async (req: Request, res: Response) => {
+    try {
+        const name = req.params.name;
+
+        const existingChannel = await Channel.findOne({ name });
+        if (existingChannel) {
+            return res.status(400).json({
+                ok: false,
+                message: name,
+            });
+        } else {
+            return res.status(200).json({
+                ok: true,
+                message: name,
+            });
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ 
+            ok: false, 
+            msg: "Something went wrong" 
+        });
+        return false;
+    };
+};
