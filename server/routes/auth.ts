@@ -11,3 +11,11 @@ router.post('/google', googleLogin);
 
 // Create new users
 
+router.post('/new', [
+    check('firstName', 'First name is required').not().isEmpty(),
+    check('lastName', 'Last name is required').not().isEmpty(),
+    check('password', 'Password is required').not().isEmpty(),
+    check('email', 'Email is required').isEmail(),
+    checkFields
+], createUser);
+
