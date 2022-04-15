@@ -9,8 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUsers = exports.userDisconnected = exports.userConnected = void 0;
+exports.saveMessage = exports.getUsers = exports.userDisconnected = exports.userConnected = void 0;
 const user_1 = require("../models/user");
+const message_1 = require("../models/message");
 const userConnected = (uid) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield user_1.User.findById(uid);
     user.online = true;
@@ -32,4 +33,16 @@ const getUsers = () => __awaiter(void 0, void 0, void 0, function* () {
     return users;
 });
 exports.getUsers = getUsers;
+const saveMessage = (payload) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const message = new message_1.Message(payload);
+        yield message.save();
+        return message;
+    }
+    catch (error) {
+        console.log(error);
+        return false;
+    }
+});
+exports.saveMessage = saveMessage;
 //# sourceMappingURL=socket.js.map

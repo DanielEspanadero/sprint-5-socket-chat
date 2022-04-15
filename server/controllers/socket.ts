@@ -24,4 +24,18 @@ export const getUsers = async () => {
         .sort('-online');
 
     return users;
-}
+};
+
+export const saveMessage = async (payload: any) => {
+
+    try {
+        const message = new Message(payload);
+        await message.save();
+
+        return message;
+
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+};
