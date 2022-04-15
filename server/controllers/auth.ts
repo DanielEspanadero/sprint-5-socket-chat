@@ -102,5 +102,60 @@ export const renewToken = async (req: any, res: Response) => {
 };
 
 export const googleLogin = async (req: Request, res: Response) => {
-    
-}
+    try {
+        const code = req.body.code;
+        const profile: any = await getProfileInfo(code);
+
+        const { email_verified, email, sub } = profile;
+
+        if (!email_verified) return res.status(400).json({
+            ok: false,
+            msg: 'User signup failed with google'
+        });
+
+        const userDB: any = await User.findOne({ email });
+
+        // If the found user has the same google id, we create token
+
+        if (userDB && userDB.auth.id === sub) {
+
+            const token = await generateAccessToken(userDB._id);
+
+            return res.json({
+                ok: true,
+                user: userDB,
+                token
+            });
+        };
+
+        // If the user does not exist in the database, we create it
+
+        const user: any = new User({
+            firstName: profile.given_name,
+            lastName: profile.family_name,
+            email: profile.email,
+            avatar: profile.picture,
+            auth: {
+                type: "Google",
+                id: profile.sub
+            }
+        });
+
+        await user.save();
+
+        // Generar el JWT
+        const token = await generateAccessToken(user.id);
+
+        res.status(200).json({
+            ok: true,
+            user,
+            token
+        });
+
+    } catch (error: any) {
+        res.status(401).json({
+            ok: false,
+            msg: error
+        });
+    };
+};

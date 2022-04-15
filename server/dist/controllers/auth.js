@@ -13,6 +13,7 @@ exports.googleLogin = exports.renewToken = exports.login = exports.createUser = 
 const user_1 = require("../models/user");
 const bcrypt_1 = require("bcrypt");
 const generate_jwt_1 = require("../helpers/generate-jwt");
+const google_1 = require("../helpers/google");
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { firstName, lastName, email, password } = req.body;
@@ -98,6 +99,53 @@ const renewToken = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 });
 exports.renewToken = renewToken;
 const googleLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const code = req.body.code;
+        const profile = yield (0, google_1.getProfileInfo)(code);
+        const { email_verified, email, sub } = profile;
+        if (!email_verified)
+            return res.status(400).json({
+                ok: false,
+                msg: 'User signup failed with google'
+            });
+        const userDB = yield user_1.User.findOne({ email });
+        // If the found user has the same google id, we create token
+        if (userDB && userDB.auth.id === sub) {
+            const token = yield (0, generate_jwt_1.generateAccessToken)(userDB._id);
+            return res.json({
+                ok: true,
+                user: userDB,
+                token
+            });
+        }
+        ;
+        // If the user does not exist in the database, we create it
+        const user = new user_1.User({
+            firstName: profile.given_name,
+            lastName: profile.family_name,
+            email: profile.email,
+            avatar: profile.picture,
+            auth: {
+                type: "Google",
+                id: profile.sub
+            }
+        });
+        yield user.save();
+        // Generar el JWT
+        const token = yield (0, generate_jwt_1.generateAccessToken)(user.id);
+        res.status(200).json({
+            ok: true,
+            user,
+            token
+        });
+    }
+    catch (error) {
+        res.status(401).json({
+            ok: false,
+            msg: error
+        });
+    }
+    ;
 });
 exports.googleLogin = googleLogin;
 //# sourceMappingURL=auth.js.map
