@@ -1,6 +1,7 @@
 import {Response, Request} from 'express';
 import { User } from '../models/user';
 import { genSaltSync, hashSync, compareSync, hash } from "bcrypt";
+import mongoose from 'mongoose';
 
 export const createUser = async (req: Request, res: Response) => {
     try {
@@ -24,7 +25,7 @@ export const createUser = async (req: Request, res: Response) => {
         // Save user in DB
         await user.save();
 
-    } catch (error) {
+    } catch (error: any) {
         res.status(500).json({
             ok: false,
             msg: error
