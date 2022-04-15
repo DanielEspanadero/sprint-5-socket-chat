@@ -126,7 +126,7 @@ const googleLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             email: profile.email,
             avatar: profile.picture,
             auth: {
-                type: "Google",
+                type: 'Google',
                 id: profile.sub
             }
         });

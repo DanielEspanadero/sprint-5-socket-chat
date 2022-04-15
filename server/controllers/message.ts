@@ -1,4 +1,4 @@
-import { Message } from "../models/message";
+import { Message } from '../models/message';
 
 export const getPersonalConversation = async (req: any, res: any) => {
     const myId = req.uid;

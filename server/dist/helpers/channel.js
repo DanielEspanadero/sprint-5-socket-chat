@@ -9,14 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createChannel = void 0;
+exports.getUserName = exports.createChannel = void 0;
 const channel_1 = require("../models/channel");
+const user_1 = require("../models/user");
 const createChannel = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { name } = payload;
         const isChannelExist = yield channel_1.Channel.findOne({ name });
         if (isChannelExist) {
-            console.log("Name already in use");
+            console.log('Name already in use');
             return;
         }
         ;
@@ -32,4 +33,29 @@ const createChannel = (payload) => __awaiter(void 0, void 0, void 0, function* (
     ;
 });
 exports.createChannel = createChannel;
+function getUserName(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const id = req.params.id;
+            const user = yield user_1.User.findById(id);
+            if (!user) {
+                return res.status(400).json({
+                    ok: false,
+                    msg: 'User not found'
+                });
+            }
+            return res.json({
+                ok: true,
+                user
+            });
+        }
+        catch (err) {
+            console.log(err);
+            return res.status(500).json(err);
+        }
+        ;
+    });
+}
+exports.getUserName = getUserName;
+;
 //# sourceMappingURL=channel.js.map

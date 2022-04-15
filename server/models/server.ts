@@ -1,8 +1,8 @@
 import express, { Application } from 'express';
-import { createServer, Server as HttpServer } from "http";
-import { Server as socketio } from "socket.io";
+import { createServer, Server as HttpServer } from 'http';
+import { Server as socketio } from 'socket.io';
 import { dbConnection } from '../database/config';
-import cors from "cors";
+import cors from 'cors';
 // import Sockets from './sockets';
 
 
