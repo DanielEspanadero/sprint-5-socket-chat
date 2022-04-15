@@ -8,6 +8,7 @@ import cors from "cors";
 
 // Routes
 import authRouter from '../routes/auth';
+import messageRoute from '../routes/message'
 
 class Server {
     private app: Application;
@@ -16,6 +17,7 @@ class Server {
     private io: socketio;
     private path = {
         auth: '/api/login',
+        message: '/api/messages'
     }
 
     constructor() {
@@ -40,6 +42,7 @@ class Server {
 
     routes() {
         this.app.use(this.path.auth, authRouter);
+        this.app.use(this.path.message, messageRouter);
     }
 
     private setSockets() {

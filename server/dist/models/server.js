@@ -23,6 +23,7 @@ class Server {
     constructor() {
         this.path = {
             auth: '/api/login',
+            message: '/api/messages'
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT;
@@ -42,6 +43,7 @@ class Server {
     }
     routes() {
         this.app.use(this.path.auth, auth_1.default);
+        this.app.use(this.path.message, messageRouter);
     }
     setSockets() {
         // new Sockets(this.io);
