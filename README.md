@@ -8,13 +8,13 @@ _The project has two servers, the client side to create the 'seo friendly' route
 ### Translations 💬
 
 _This README file is also available in other languages:_
-- [Catalan]()
-- [French]()
-- [German]()
-- [Italian]()
-- [Portuguese]()
-- [Spanish]()
-- [Swedish]()
+- [Catalan](https://github.com/DanielEspanadero/sprint-5-socket-chat/blob/main/docs/README-cat.md)
+- [French](https://github.com/DanielEspanadero/sprint-5-socket-chat/blob/main/docs/README-fr.md)
+- [German](https://github.com/DanielEspanadero/sprint-5-socket-chat/blob/main/docs/README-de.md)
+- [Italian](https://github.com/DanielEspanadero/sprint-5-socket-chat/blob/main/docs/README-it.md)
+- [Portuguese](https://github.com/DanielEspanadero/sprint-5-socket-chat/blob/main/docs/README-pt.md)
+- [Spanish](https://github.com/DanielEspanadero/sprint-5-socket-chat/blob/main/docs/README-es.md)
+- [Swedish](https://github.com/DanielEspanadero/sprint-5-socket-chat/blob/main/docs/README-se.md)
 
 ### Pre-requirements 📋
 
