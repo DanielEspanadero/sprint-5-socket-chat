@@ -7,7 +7,7 @@ import { Picker } from 'emoji-mart';
 import { socketEvents } from '../../../config/socketEvents';
 import 'emoji-mart/css/emoji-mart.css'
 
-export const ChannelInputMessage = () => {
+export const InputMessage = () => {
     const [message, setMessage] = useState('');
     const [showEmoji, setShowEmoji] = useState(false);
     const emojiSelector: any = useRef();
@@ -20,29 +20,27 @@ export const ChannelInputMessage = () => {
     };
     const handleAppClick = (e: any) => {
         !showEmoji ? setShowEmoji(true) : setShowEmoji(false);
-    }
+    };
     const onChange = ({ target }: { target: any }) => {
         setMessage(target.value);
-    }
+    };
     const onSubmit = (ev: { preventDefault: () => void; }) => {
         ev.preventDefault();
 
         if (message.length === 0) { return; }
         setMessage('');
 
-        socket.emit(socketEvents.CLIENT.CHANNEL_MESSAGE, {
+        socket.emit(socketEvents.CLIENT.PERSONAL_MESSAGE, {
             from: auth.uid,
             to: chatState.activeChat,
             message
         });
     };
     const handleKeyUp = () => {
-
         socket.emit(socketEvents.CLIENT.TYPING, {
             to: chatState.activeChat,
         });
     };
-
     const stop = () => {
         setTimeout(() => {
             socket.emit(socketEvents.CLIENT.STOP_TYPING, {
@@ -50,7 +48,6 @@ export const ChannelInputMessage = () => {
             });
         }, 1000)
     };
-
     return (
         <form onSubmit={onSubmit}>
             <div className="row body-input">
