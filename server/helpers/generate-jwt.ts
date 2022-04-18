@@ -1,32 +1,37 @@
-import jwt from 'jsonwebtoken';
-import 'dotenv/config';
-import { User } from '../models/user';
+import { sign, verify, Secret } from "jsonwebtoken";
 
-export const generateAccessToken = (uid = '') => {
-    return new Promise((resolve: any, reject: any) => {
-        const user = uid;
 
-        jwt.sign(user, process.env.SECRETORPRIVATEKEY as string, {
-            expiresIn: '4h'
+export const generateAccessToken = (uid: string) => {
+
+    return new Promise((resolve, reject) => {
+
+        const payload = { uid };
+
+        sign(payload, process.env.JWT_KEY as string, {
+            expiresIn: '24h'
         }, (err, token) => {
+
             if (err) {
                 console.log(err);
-                reject('Failed to generate JWT')
+                reject('Cannot generate JWT');
             } else {
                 resolve(token);
-            };
-        }
-        );
+            }
+
+        });
     });
-};
+
+}
 
 interface UserPayload {
     uid: string;
 }
 
-export const checkJWT = async (token: string) => {
+export const checkJWT = (token: string) => {
+
     try {
-        const payload = jwt.verify(token,
+
+        const payload = verify(token,
             process.env.JWT_KEY as string
         ) as UserPayload;
 
@@ -35,5 +40,6 @@ export const checkJWT = async (token: string) => {
     } catch (error: any) {
         console.log("err", error.message, token);
         return [false, null];
-    };
-};
+    }
+
+}
