@@ -51,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "@types/emoji-mart": "^3.0.9",
     "@types/react-scroll": "^1.8.3"
   }
 }
