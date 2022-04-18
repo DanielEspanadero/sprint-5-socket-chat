@@ -7,39 +7,29 @@ import { AuthContext } from '../context/authContext';
 import '../css/loginPage.css'
 
 export const LoginPage = () => {
-
     const { login, googleLogin } = useContext(AuthContext);
-
     const [form, setForm] = useState({
         email: '',
         password: '',
         rememberme: false
     });
 
-
     useEffect(() => {
-
         const email = localStorage.getItem('email');
-
         if (email)
             setForm(form => ({
                 ...form,
                 email,
                 rememberme: true
-
             }))
-
     }, [])
 
     const onChange = ({ target }: { target: any }) => {
-
         const { name, value } = target;
-
         setForm({
             ...form,
             [name]: value
         });
-
     }
 
     const toggleCheck = () => {
@@ -51,12 +41,10 @@ export const LoginPage = () => {
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
         // If remember option is checked, save email on localstorage. Otherwise, remove it.
         form.rememberme
             ? localStorage.setItem('email', form.email)
             : localStorage.removeItem('email');
-
 
         const { email, password } = form;
         const ok = await login(email, password);
@@ -133,4 +121,4 @@ export const LoginPage = () => {
             <Google informParent={googleLogin} />
         </form>
     );
-}
+};
