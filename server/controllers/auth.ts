@@ -1,7 +1,6 @@
 import { Response, Request } from 'express';
 import { User } from '../models/user';
 import { genSaltSync, hashSync, compareSync, hash } from 'bcrypt';
-import mongoose from 'mongoose';
 import { generateAccessToken } from '../helpers/generate-jwt';
 import { getProfileInfo } from '../helpers/google';
 

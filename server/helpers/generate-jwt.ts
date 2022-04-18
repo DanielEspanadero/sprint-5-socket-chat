@@ -7,7 +7,7 @@ export const generateAccessToken = (uid: string) => {
 
         const payload = { uid };
 
-        sign(payload, process.env.JWT_KEY as string, {
+        sign(payload, process.env.SECRETORPRIVATEKEY as string, {
             expiresIn: '24h'
         }, (err, token) => {
 
@@ -32,7 +32,7 @@ export const checkJWT = (token: string) => {
     try {
 
         const payload = verify(token,
-            process.env.JWT_KEY as string
+            process.env.SECRETORPRIVATEKEY as string
         ) as UserPayload;
 
         return [true, payload.uid];

@@ -31,7 +31,7 @@ const UserSchema = new Schema ({
     },
     avatar: {
         type: String,
-        // required: [true, 'Avatar is required.']
+        default: 'https://github.com/DanielEspanadero/sprint-5-socket-chat/blob/main/client/public/assets/images/avatars/default.png'
     },
     auth: {
         type: Object,
