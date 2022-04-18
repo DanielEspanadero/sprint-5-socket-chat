@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import { createContext } from 'react';
 import { useSocket } from '../hooks/useSocket';
-import { AuthContext } from './AuthContext';
+import { AuthContext } from './authContext';
 import { Socket } from 'socket.io-client';
-import { ChatContext } from './chat/ChatContext';
+import { ChatContext } from './chat/chatContext';
 import { types } from './types/types';
 import { scrollToBottomAnimated } from '../helpers/scrollToBottom';
 import { socketEvents } from '../config/socketEvents'
