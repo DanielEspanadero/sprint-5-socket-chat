@@ -8,18 +8,18 @@ export const ChannelHeaderBody = () => {
     );
 
     return (
-        <div className="row body-heading">
-            <div className="col-sm-1 col-xs-1">
-                <div className="body-heading-avatar-icon">
-                    <img src="../images/icons/channel.png" alt="" />
+        <div className='row body-heading'>
+            <div className='col-sm-1 col-xs-1'>
+                <div className='body-heading-avatar-icon'>
+                    <img src='../images/icons/channel.png' alt='' />
                 </div>
             </div>
-            <div className="col-sm-10 col-xs-10">
-                <div className="col-sm-8 col-xs-10 body-heading-name">
+            <div className='col-sm-10 col-xs-10'>
+                <div className='col-sm-8 col-xs-10 body-heading-name'>
                     <h5> {channel.name}  </h5> <small>  - Channel Chat </small>
                 </div>
             </div>
-            <div className="col-sm-1 col-xs-1 body-heading-online">
+            <div className='col-sm-1 col-xs-1 body-heading-online'>
             </div>
         </div>
     );

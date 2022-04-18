@@ -50,16 +50,16 @@ export const InputMessage = () => {
     };
     return (
         <form onSubmit={onSubmit}>
-            <div className="row body-input">
+            <div className='row body-input'>
 
-                <div className="col-sm-1 col-xs-1 body-input-emoji">
+                <div className='col-sm-1 col-xs-1 body-input-emoji'>
                     <i
-                        className="far fa-laugh"
+                        className='far fa-laugh'
                         onClick={(e) => handleAppClick(e)}
                     ></i>
 
                 </div>
-                <div className="col-sm-10 col-xs-10">
+                <div className='col-sm-10 col-xs-10'>
                     {showEmoji &&
                         (<span
                             ref={el => emojiSelector.current = el}
@@ -68,18 +68,18 @@ export const InputMessage = () => {
                         </span>)
                     }
                     <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Message..."
+                        type='text'
+                        className='form-control'
+                        placeholder='Message...'
                         value={message}
                         onChange={onChange}
                         onKeyUp={() => { handleKeyUp(); stop() }}
                     />
                 </div>
-                <div className="col-sm-1 col-xs-1 body-input-send">
+                <div className='col-sm-1 col-xs-1 body-input-send'>
                     <i
-                        className="fas fa-paper-plane"
-                        aria-hidden="true"
+                        className='fas fa-paper-plane'
+                        aria-hidden='true'
                         onClick={onSubmit}
                     />
                 </div>

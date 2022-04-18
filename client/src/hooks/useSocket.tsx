@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
 import io from 'socket.io-client';
-import { Socket } from "socket.io-client";
+import { Socket } from 'socket.io-client';
 import { socketEvents } from '../config/socketEvents';
 
 export const useSocket = (serverPath: string) => {
     const [socket, setSocket] = useState<Socket | null>(null)
     const [online, setOnline] = useState(false);
     const connectSocket = useCallback(() => {
-        const token = localStorage.getItem('token') || "{}"
+        const token = localStorage.getItem('token') || '{}'
         const socketTemp = io(serverPath, {
             transports: ['websocket'],
             autoConnect: true,

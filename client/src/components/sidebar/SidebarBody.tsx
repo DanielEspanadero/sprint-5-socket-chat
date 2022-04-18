@@ -20,7 +20,7 @@ export const SidebarBody = () => {
     const searchUsers = (value: any) => {
         setUsers(
             chatState.users.filter((user: any) =>
-                (user.firstName.toLowerCase() + " " + user.lastName.toLowerCase()).includes(value.trim().toLowerCase())
+                (user.firstName.toLowerCase() + ' ' + user.lastName.toLowerCase()).includes(value.trim().toLowerCase())
             )
         );
     };
@@ -41,16 +41,16 @@ export const SidebarBody = () => {
 
     return (
         <>
-            <div className="sidebar-container-users">
-                <Tabs defaultActiveKey="users" id="uncontrolled-tab-example" className="mb-3">
-                    <Tab eventKey="users" title="Users">
-                        <div className="row searchBox">
-                            <div className="col-sm-12">
+            <div className='sidebar-container-users'>
+                <Tabs defaultActiveKey='users' id='uncontrolled-tab-example' className='mb-3'>
+                    <Tab eventKey='users' title='Users'>
+                        <div className='row searchBox'>
+                            <div className='col-sm-12'>
                                 <input
-                                    type="text"
-                                    className="form-control"
-                                    name="searchText"
-                                    placeholder="Search contacts"
+                                    type='text'
+                                    className='form-control'
+                                    name='searchText'
+                                    placeholder='Search contacts'
                                     onInput={(e: any) => searchUsers(e.target.value)}
                                 />
                             </div>
@@ -66,14 +66,14 @@ export const SidebarBody = () => {
                                 ))
                         }
                     </Tab>
-                    <Tab eventKey="channels" title="Channels">
-                        <div className="row searchBox">
-                            <div className="col-sm-12">
+                    <Tab eventKey='channels' title='Channels'>
+                        <div className='row searchBox'>
+                            <div className='col-sm-12'>
                                 <input
-                                    type="text"
-                                    className="form-control"
-                                    name="searchText"
-                                    placeholder="Search channels"
+                                    type='text'
+                                    className='form-control'
+                                    name='searchText'
+                                    placeholder='Search channels'
                                     onInput={(e: any) => searchChannels(e.target.value)}
                                 />
                             </div>

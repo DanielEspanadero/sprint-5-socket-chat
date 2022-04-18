@@ -1,7 +1,7 @@
-import React, { createContext, useCallback, useContext, useState } from "react";
-import { fetchWithoutToken, fetchWithToken } from "../helpers/fetch";
-import { types } from "./types/types";
-import { ChatContext } from "./chat/chatContext";
+import React, { createContext, useCallback, useContext, useState } from 'react';
+import { fetchWithoutToken, fetchWithToken } from '../helpers/fetch';
+import { types } from './types/types';
+import { ChatContext } from './chat/chatContext';
 
 type State = {
 
@@ -21,7 +21,7 @@ const initialState: State = {
     firstName: null,
     lastName: null,
     email: null,
-    avatar: ""
+    avatar: ''
 };
 
 export interface IAuth {
@@ -42,7 +42,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     const googleLogin = async (payload: any) => {
 
         if (payload.ok) {
-            localStorage.setItem("token", payload.token)
+            localStorage.setItem('token', payload.token)
 
             const { user } = payload;
 
@@ -60,10 +60,10 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     const login = async (email: any, password: any) => {
 
-        const res = await fetchWithoutToken('login', { email, password }, "POST")
+        const res = await fetchWithoutToken('login', { email, password }, 'POST')
 
         if (res.ok) {
-            localStorage.setItem("token", res.token)
+            localStorage.setItem('token', res.token)
 
             const { user } = res;
 
@@ -84,10 +84,10 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     const register = async (firstName: any, lastName: any, email: any, password: any, avatar: any) => {
 
-        const res = await fetchWithoutToken('login/new', { firstName, lastName, email, password, avatar }, "POST");
+        const res = await fetchWithoutToken('login/new', { firstName, lastName, email, password, avatar }, 'POST');
 
         if (res.ok) {
-            localStorage.setItem("token", res.token)
+            localStorage.setItem('token', res.token)
 
             const { user } = res;
 
@@ -131,7 +131,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         const res = await fetchWithToken('login/renew');
 
         if (res.ok) {
-            localStorage.setItem("token", res.token)
+            localStorage.setItem('token', res.token)
 
             const { user } = res;
 
@@ -165,7 +165,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     const logout = () => {
 
         // delete localstorage
-        localStorage.removeItem("token");
+        localStorage.removeItem('token');
 
         dispatch({
             type: types.closeSession

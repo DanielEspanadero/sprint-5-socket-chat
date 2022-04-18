@@ -24,16 +24,16 @@ export const Google = ({ informParent = (f: any) => f }) => {
         <GoogleLogin
             // use your client id here
             clientId={process.env.REACT_APP_GOOGLE_ID as string}
-            buttonText="Login with google"
-            responseType="code"
+            buttonText='Login with google'
+            responseType='code'
 
             render={(renderProps) => (
                 <button
                     onClick={renderProps.onClick}
                     disabled={renderProps.disabled}
-                    className="btn btn-danger btn-lg btn-block login-page"
+                    className='btn btn-danger btn-lg btn-block login-page'
                 >
-                    <i className="fab fa-google p-2"></i>Login with Google
+                    <i className='fab fa-google p-2'></i>Login with Google
                 </button>
             )}
             redirectUri={process.env.REACT_APP_GOOGLE_REDIRECT_URI as string}

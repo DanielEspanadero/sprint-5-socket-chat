@@ -19,7 +19,7 @@ export const SocketContext = createContext<socketContext>({} as any);
 
 export const SocketProvider = ({ children }: SocketIoProviderProps) => {
     const { socket, connectSocket, disconnectSocket, online } = useSocket(
-        "http://localhost:8080"
+        'http://localhost:8080'
     );
     const { auth } = useContext(AuthContext);
     const { dispatch } = useContext(ChatContext);
@@ -56,7 +56,7 @@ export const SocketProvider = ({ children }: SocketIoProviderProps) => {
                 user
             });
 
-            scrollToBottomAnimated("messages");
+            scrollToBottomAnimated('messages');
         });
 
     }, [socket, dispatch]);
@@ -91,7 +91,7 @@ export const SocketProvider = ({ children }: SocketIoProviderProps) => {
                 payload: message,
             });
 
-            scrollToBottomAnimated("messages");
+            scrollToBottomAnimated('messages');
         });
     }, [socket, dispatch]);
 

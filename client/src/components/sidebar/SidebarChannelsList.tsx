@@ -32,20 +32,20 @@ export const SidebarChannelsList = ({ channel }: { channel: any }) => {
             className={`row sidebar-user ${(channel.uid === activeChat) && 'active_chat'}`}
             onClick={onClick}
             title={`Join to ${channel.name} ${channel.type}!`}
-            id="sidebarItem"
+            id='sidebarItem'
         >
-            <div className="col-sm-2 col-xs-2">
-                <div className="sidebar-user-avatar">
-                    <img src="../images/icons/channel.png" alt="" />
+            <div className='col-sm-2 col-xs-2'>
+                <div className='sidebar-user-avatar'>
+                    <img src='../images/icons/channel.png' alt='' />
                 </div>
             </div>
-            <div className="col-sm-9 col-xs-9">
-                <div className="row">
-                    <div className="col-sm-8 col-xs-8 sidebar-user-name">
+            <div className='col-sm-9 col-xs-9'>
+                <div className='row'>
+                    <div className='col-sm-8 col-xs-8 sidebar-user-name'>
                         <span > {channel.name} - Channel </span>
                     </div>
                 </div>
-                <div className="row sidebar-user-email">
+                <div className='row sidebar-user-email'>
                     <span> {channel.type} </span>
                 </div>
             </div>

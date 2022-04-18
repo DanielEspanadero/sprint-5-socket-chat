@@ -23,7 +23,7 @@ export const MessagesList = () => {
             <>
                 <ChannelHeaderBody />
                 {/* <!-- Historia inicio --> */}
-                <div id="messages" className="msg_history">
+                <div id='messages' className='msg_history'>
                     {
                         chatState.messages && chatState.messages
                             .sort((a: any, b: any) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
@@ -44,7 +44,7 @@ export const MessagesList = () => {
         <>
             <HeaderBody />
             {/* <!-- Historia inicio --> */}
-            <div id="messages" className="msg_history">
+            <div id='messages' className='msg_history'>
                 {
                     chatState.messages && chatState.messages
                         .sort((a: any, b: any) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
