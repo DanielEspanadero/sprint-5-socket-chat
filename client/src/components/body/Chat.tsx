@@ -4,33 +4,25 @@ import { ChatContext } from '../../context/chat/chatContext';
 
 import { IncomingMessage } from './personalMessage/messages/IncomingMessage';
 import { OutgoingMessage } from './personalMessage/messages/OutgoingMessage';
-import { InputMessage } from './PersonalMessage/InputMessage';
-import { HeaderBody } from './PersonalMessage/HeaderBody';
-import { ChannelHeaderBody } from './Channel/HeaderBody';
-import { ChannelIncomingMessage } from './Channel/messages/IncomingMessage';
-import { ChannelInputMessage } from './Channel/InputMessage';
-import { ChannelOutgoingMessage } from './Channel/messages/OutgoingMessage';
+import { InputMessage } from './personalMessage/InputMessage';
+import { HeaderBody } from './personalMessage/HeaderBody';
+import { ChannelHeaderBody } from './channel/HeaderBody';
+import { ChannelIncomingMessage } from './channel/messages/IncomingMessage';
+import { ChannelInputMessage } from './channel/InputMessage';
+import { ChannelOutgoingMessage } from './channel/messages/OutgoingMessage';
 
 export const MessagesList = () => {
-
     const { chatState } = useContext(ChatContext);
     const { auth } = useContext(AuthContext);
-
     const channels = chatState.channels;
     const uid = chatState.activeChat;
-
     const result = channels.filter((channel: { uid: any; }) => channel.uid === uid);
 
-
     if (result[0] !== undefined) {
-
         return (
             <>
-
                 <ChannelHeaderBody />
-
                 {/* <!-- Historia inicio --> */}
-
                 <div id="messages" className="msg_history">
                     {
                         chatState.messages && chatState.messages
@@ -40,25 +32,18 @@ export const MessagesList = () => {
                                 (msg.from !== auth.uid)
                                     ? <ChannelIncomingMessage key={msg.uid} msg={msg} />
                                     : <ChannelOutgoingMessage key={msg.uid} msg={msg} />
-
                             ))
                     }
                 </div>
-
-
                 <ChannelInputMessage />
             </>
         )
-
-    }
+    };
 
     return (
         <>
-
             <HeaderBody />
-
             {/* <!-- Historia inicio --> */}
-
             <div id="messages" className="msg_history">
                 {
                     chatState.messages && chatState.messages
@@ -70,11 +55,7 @@ export const MessagesList = () => {
                         ))
                 }
             </div>
-
             <InputMessage />
-
         </>
-
     )
-
 }
