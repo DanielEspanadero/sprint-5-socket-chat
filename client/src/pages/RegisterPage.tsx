@@ -7,16 +7,16 @@ import { AuthContext } from '../context/authContext';
 import '../css/loginPage.css'
 
 const avatars = [
-    '../assets/images/avatars/01.png',
-    '../assets/images/avatars/02.png',
-    '../assets/images/avatars/03.png',
-    '../assets/images/avatars/04.png',
-    '../assets/images/avatars/05.png',
-    '../assets/images/avatars/06.png',
-    '../assets/images/avatars/07.png',
-    '../assets/images/avatars/08.png',
-    '../assets/images/avatars/09.png',
-    '../assets/images/avatars/10.png'
+    '../images/avatars/01.png',
+    '../images/avatars/02.png',
+    '../images/avatars/03.png',
+    '../images/avatars/04.png',
+    '../images/avatars/05.png',
+    '../images/avatars/06.png',
+    '../images/avatars/07.png',
+    '../images/avatars/08.png',
+    '../images/avatars/09.png',
+    '../images/avatars/10.png'
 ];
 
 export const RegisterPage = () => {

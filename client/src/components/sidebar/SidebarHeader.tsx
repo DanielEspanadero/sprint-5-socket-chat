@@ -14,7 +14,7 @@ export const SidebarHeader = () => {
                 </div>
             </div>
             <div className='col-sm-9 col-xs-9 sidebar-heading-name'>
-                <h4>{auth.firstName} {auth.lastName}</h4>
+                <h4>{auth.firstName}</h4>
             </div>
             <div className='col-sm-1 col-xs-1 sidebar-heading-logout'>
                 <i

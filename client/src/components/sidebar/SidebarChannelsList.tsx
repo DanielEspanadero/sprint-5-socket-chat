@@ -36,7 +36,7 @@ export const SidebarChannelsList = ({ channel }: { channel: any }) => {
         >
             <div className='col-sm-2 col-xs-2'>
                 <div className='sidebar-user-avatar'>
-                    <img src='../images/icons/channel.png' alt='' />
+                    <img src='../images/icons/channel.png' alt='avatar' />
                 </div>
             </div>
             <div className='col-sm-9 col-xs-9'>

@@ -1,6 +1,8 @@
-import {Schema, model} from 'mongoose';
+import { Schema, model } from "mongoose";
+
 
 const MessageSchema = new Schema({
+
     from: {
         type: Schema.Types.ObjectId,
         ref: 'User',
@@ -15,15 +17,16 @@ const MessageSchema = new Schema({
         type: String,
         required: true
     }
-},
-{
+},{
     timestamps: true
 });
 
-MessageSchema.method('toJSON', function () {
+
+MessageSchema.method('toJSON', function() {
     const { __v, _id, ...object } = this.toObject();
     object.uid = _id;
     return object;
 });
 
-export const Message = model('Message', MessageSchema);
+
+export const Message = model('Message', MessageSchema );

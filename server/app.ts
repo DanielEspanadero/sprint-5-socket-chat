@@ -1,4 +1,4 @@
 import Server from './models/server';
-import 'dotenv/config';
+import 'dotenv/config'
 
-new Server();
+const server = new Server();

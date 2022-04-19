@@ -1,86 +1,68 @@
-import express, { Application } from 'express';
-import { createServer, Server as HttpServer } from 'http';
-import { Server as socketio } from 'socket.io';
-import { dbConnection } from '../database/config';
-import cors from 'cors';
+// Express server
+import  express, {Application} from "express";
+import { createServer, Server as HttpServer } from "http";
+import { Server as socketio } from "socket.io";
+import path from "path";
+import cors from "cors";
 import Sockets from './sockets';
+import { dbConnection } from '../database/config';
 
 // Routes
-import authRouter from '../routes/auth';
-import messageRoute from '../routes/message';
+import { authRouter } from "../routes/auth";
+import { messagesRouter } from "../routes/messages";
+import { channelRouter } from "../routes/channel";
 
 class Server {
     private app: Application;
-    private port: String;
+    private port: number | undefined | string;
     private server: HttpServer;
     private io: socketio;
-    private path = {
-        auth: '/api/login',
-        message: '/api/messages'
-    }
 
     constructor() {
-        this.app = express();
-        this.port = process.env.PORT!;
+
+        this.app  = express();
+        this.port = process.env.PORT;
+
+        // Connect to DB
+        dbConnection();
 
         // Http server
-        this.server = createServer(this.app);
+        this.server = createServer( this.app );
+        
+        // Socket config
+        this.io = new socketio( this.server, { /* options */ } );
 
-        // Configuraciones de sockets
-        this.io = new socketio(this.server, {
-            cors: {
-                origin: "*",
-                methods: ["GET", "POST"]
-            }
-        });
-
+        this.execute();
         this.middlewares();
-        this.connectDB();
-        this.routes();
-        this.sockets();
-        this.listen();
     }
 
-    async connectDB(){
-        await dbConnection();
-    }
+    private middlewares() {
 
-    middlewares(){
-        this.app.use(cors({
-            allowedHeaders: [
-                'Origin',
-                'X-Requested-With',
-                'Content-Type',
-                'Accept',
-                'X-Access-Token',
-            ],
-            credentials: true,
-            methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
-            origin: '*',
-            preflightContinue: false,
-        }));
-        this.app.use(express.json());
-    }
-
-    routes() {
-        this.app.use(this.path.auth, authRouter);
-        this.app.use(this.path.message, messageRoute);
+        this.app.use( express.static( path.resolve( __dirname, '../public' ) ) );
+        this.app.use( cors() );
+        this.app.use( express.json() );
+        
+        // API End Points
+        this.app.use( '/api/login', authRouter );
+        this.app.use( '/api/messages', messagesRouter );
+        this.app.use( '/api/channel', channelRouter );
     }
 
     private setSockets() {
-        new Sockets(this.io);
+        new Sockets( this.io );
     }
 
-    // Initializing sockets
-    sockets() {
+    execute() {
+
+        // Initializing sockets
         this.setSockets();
+
+        // Initializing server
+        this.server.listen( this.port, () => {
+            console.log('Server listening on port:', this.port );
+        });
     }
 
-    listen() {
-        this.server.listen(this.port, () => {
-            console.log(`Server on port ${this.port}`);
-        });
-    };
-};
+}
 
 export default Server;

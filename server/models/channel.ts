@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model } from "mongoose";
 
 
 const ChannelSchema = new Schema({
@@ -11,16 +11,16 @@ const ChannelSchema = new Schema({
     type: {
         type: String,
     },
-}, {
+},{
     timestamps: true
 });
 
 
-ChannelSchema.method('toJSON', function () {
+ChannelSchema.method('toJSON', function() {
     const { __v, _id, ...object } = this.toObject();
     object.uid = _id;
     return object;
 });
 
 
-export const Channel = model('Channel', ChannelSchema);
+export const Channel = model('Channel', ChannelSchema );

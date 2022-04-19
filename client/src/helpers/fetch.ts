@@ -1,10 +1,10 @@
 const baseUrl = process.env.REACT_APP_API_URL;
 
-export const fetchWithoutToken = async (endpoint: any, data: any, method = 'GET') => {
+export const fetchWithoutToken = async (endpoint: any, data: any, method = "GET") => {
 
     const url = `${baseUrl}/${endpoint}`
 
-    if (method === 'GET') {
+    if (method === "GET") {
         const res = await fetch(url);
         return await res.json();
     }
@@ -18,14 +18,14 @@ export const fetchWithoutToken = async (endpoint: any, data: any, method = 'GET'
     })
 
     return await res.json();
-};
+}
 
-export const fetchWithToken = async (endpoint: any, data?: any, method = 'GET') => {
+export const fetchWithToken = async (endpoint: any, data?: any, method = "GET") => {
 
     const url = `${baseUrl}/${endpoint}`
-    const token = localStorage.getItem('token') || '';
+    const token = localStorage.getItem("token") || "";
 
-    if (method === 'GET') {
+    if (method === "GET") {
         const res = await fetch(url, {
             headers: {
                 'x-token': token
@@ -45,5 +45,4 @@ export const fetchWithToken = async (endpoint: any, data?: any, method = 'GET') 
     })
 
     return await res.json();
-};
-
+}

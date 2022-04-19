@@ -1,10 +1,16 @@
-import { connect } from 'mongoose';
+import { connect } from "mongoose";
 
-export const dbConnection = async () => {
+export const dbConnection = async() => {
+
     try {
-        await connect(process.env.MONGO_URL as string);
-        console.log('MongoDB started')
+        
+        await connect( process.env.MONGO_URL as string );
+
+        console.log('Db connexion successfully.');
+
     } catch (error) {
-        throw new Error('Error to connecting database');
+        console.log(error);
+        throw new Error('Error connecting database');
     }
+
 }

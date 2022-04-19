@@ -1,32 +1,39 @@
-import { Router } from 'express';
-import { check } from 'express-validator';
+/*
+    path: api/login
+*/
+import { Router } from "express";
+import { check } from "express-validator";
 
-import { createUser, login, renewToken, googleLogin } from '../controllers/auth';
-import { checkFields } from '../middlewares/validate-fields';
-import { validateToken } from '../middlewares/validate-jwt';
+// Controllers
+import { createUser, login, renewToken, GoogleLogin } from "../controllers/AuthController";
+import { checkFields } from "../middlewares/checkFields";
+import { validateJWT } from "../middlewares/auth";
+
+
 
 const router = Router();
 
-router.post('/google', googleLogin);
+router.post('/google', GoogleLogin );
 
-// Create new users
-
-router.post('/new', [
-    check('firstName', 'First name is required').not().isEmpty(),
-    check('lastName', 'Last name is required').not().isEmpty(),
-    check('password', 'Password is required').not().isEmpty(),
-    check('email', 'Email is required').isEmail(),
+// Crear nuevos usuarios
+router.post( '/new', [
+    check('firstName', 'El first name es obligatorio').not().isEmpty(),
+    check('lastName', 'El last name es obligatorio').not().isEmpty(),
+    check('password', 'El password es obligatorio').not().isEmpty(),
+    check('email', 'El email es obligatorio').isEmail(),
     checkFields
-], createUser);
+], createUser );
+
 
 // Login
-router.post('/', [
-    check('email', 'Email is required').isEmail(),
-    check('password', 'Password is required').not().isEmpty(),
+router.post('/',[
+    check('email', 'El email es obligatorio').isEmail(),
+    check('password', 'El password es obligatorio').not().isEmpty(),
     checkFields
-], login);
+], login );
 
-// Renew Token
-router.get('/renew', validateToken, renewToken);
+// Revalidar Token
+router.get('/renew', validateJWT, renewToken );
 
-export default router;
+
+export {router as authRouter};

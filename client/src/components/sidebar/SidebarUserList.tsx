@@ -33,7 +33,7 @@ export const SidebarUserList = ({ user }: { user: any }) => {
         >
             <div className='col-sm-2 col-xs-2'>
                 <div className='sidebar-user-avatar'>
-                    <img src={user.avatar} alt='' />
+                    <img src={user.avatar} alt='avatar' />
                 </div>
             </div>
             <div className='col-sm-9 col-xs-9'>
