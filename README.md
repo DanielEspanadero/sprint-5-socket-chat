@@ -3,6 +3,7 @@
 ## Special mention 🙏🏻
 
 _This chat and learning about sockets that have given me so much headache, I have learned thanks to a course by [Fernando Herrera](https://github.com/Klerith) on Udemy called ['React: Real-time applications with Socket.io'](https://www.udemy.com/course/react-socket-io-fernando/), where he does different projects using socket such as a queuing application, real-time maps and chat._
+_I also want to mention the mentor of this node.js bootcamp at [IT Academy](https://www.barcelonactiva.cat/es/itacademy#mesinfo) Barcelona, [Omar Olmedo](https://github.com/StratocasterO), who has been in charge of correcting and guiding us in all the sprints until we got here, having a very important role in making this chat._
 
 ## Starting 🚀
 
@@ -69,7 +70,7 @@ _To log in, you will have to enter the email and password you used to register._
 
 ![Demo](https://github.com/DanielEspanadero/sprint-5-socket-chat/blob/main/docs/4.png)
 
-## Chat home page 🏡
+### Chat home page 🏡
 
 _On the main page you can access all the functionalities that you have for the use of the application. On the left you can choose between writing private messages to users, creating a chat room or writing messages in existing rooms._
 
@@ -83,7 +84,34 @@ _Once the channel is created, any person registered in the application will be a
 
 ![Demo](https://github.com/DanielEspanadero/sprint-5-socket-chat/blob/main/docs/3.png)
 
-## Sockets on the front-end 📨
+### Sockets on the front-end 📨
 
 _We can trace the configuration of the sockets in the frontend starting with the path 'config > socketEvent.ts' where all the messages are customized. Secondly, we will have the route 'context > socketContext.tsx' where the emissions made from the backend will be called and configured. Finally, in 'hooks > useSocket.tsx' we will have different functionalities through a useState hook that will be implemented in the corresponding parts of the application._
 
+
+## Server ⚙️
+
+_To create the server I used class-based express (Same as I did in craps, but this time using TypeScript) combined with socket.io_
+
+_The server file is located in the path 'models > server.ts' and is made in a class for scalability, since the code is much cleaner and easier to work with than having it all scattered in functions._
+
+_Another curious fact is that the socket file is also worked in classes for a matter of ease when working with them, since everything works through an event (socketEvents()). This also works socket combining along with JWT validation._
+
+### Mongoose 📝
+
+_For the mongoose configuration, the following steps have been followed:_
+_- First, the configuration of the database through the connect() function in the path 'database > config.ts'._
+_- Then the creation of schemes and models (They are inside the models folder) of the different channels, messages and users._
+_- Finally the manipulation of these models in the corresponding controllers to add it to the database._
+
+### Password manipulation (encryption) 🔐
+
+_Finally, I was not able to manipulate the password without saving it in the database as Omar told us in class, but through the genSaltSync() function of the bcrypt module, which encrypts the password in SHA-256 in a way that is impossible to undo. Further validation is done through the compareSync() function also included in the bcrypt module. In practice it is the same as validating it with JWT._
+
+## Author ✒️
+
+* **Daniel Españadero** - *Complete work* - [DanielEspanadero](https://github.com/DanielEspanadero)
+
+## License 📄
+
+_This project is made under an [MIT license](https://github.com/DanielEspanadero/sprint-5-socket-chat/blob/main/LICENSE)_
