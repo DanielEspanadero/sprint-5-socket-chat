@@ -46,7 +46,7 @@ _Para usar as variáveis ​​de ambiente e para que tudo funcione corretamente
 
 _Depois que todos os programas e dependências necessários estiverem instalados, basta executar o seguinte comando no frontend (Cliente) e no backend (Servidor):_
 ```
-npm start
+npm run dev
 ```
 
 ## Cliente 💻

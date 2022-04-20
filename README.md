@@ -46,7 +46,7 @@ _To use the environment variables and for everything to work correctly, you have
 
 _Once all the necessary programs and dependencies are installed, simply run the following command on both the frontend (Client) and backend (Server):_
 ```
-npm start
+npm run dev
 ```
 
 ## Client 💻

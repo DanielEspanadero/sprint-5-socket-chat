@@ -46,7 +46,7 @@ _Per utilitzar les variables d'entorn i que tot funcioni correctament, has de cr
 
 _Una vegada que tots els programes i dependències necessaris estiguin instal·lats, simplement executeu la següent ordre tant al frontend (Client) com al backend (Servidor):_
 ````
-npm start
+npm run dev
 ````
 
 ## Client 💻

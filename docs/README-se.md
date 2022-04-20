@@ -46,7 +46,7 @@ _För att använda miljövariablerna och för att allt ska fungera korrekt måst
 
 _När alla nödvändiga program och beroenden är installerade kör du helt enkelt följande kommando på både frontend (klient) och backend (server):_
 ```
-npm start
+npm run dev
 ```
 
 ## Kund 💻

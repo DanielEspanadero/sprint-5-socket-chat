@@ -46,7 +46,7 @@ _Um die Umgebungsvariablen zu verwenden und damit alles richtig funktioniert, m�
 
 _Sobald alle erforderlichen Programme und Abhängigkeiten installiert sind, führen Sie einfach den folgenden Befehl sowohl auf dem Frontend (Client) als auch auf dem Backend (Server) aus:_
 ```
-npm start
+npm run dev
 ```
 
 ## Kunde 💻
