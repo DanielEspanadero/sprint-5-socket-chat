@@ -1,4 +1,4 @@
-import { verify } from "jsonwebtoken";
+import { verify } from 'jsonwebtoken';
 
 interface UserPayload {
     uid: string;
@@ -61,8 +61,8 @@ export const validateJWT = ( req: any, res: any, next: any ) => {
 
 
 
-/* import VerifyAccessToken from "../src/shared/application/security/VerifyAccessToken";
-import User from "../src/users/domain/User";
+/* import VerifyAccessToken from '../src/shared/application/security/VerifyAccessToken';
+import User from '../src/users/domain/User';
 import { Request } from 'express';
 
 interface RequestWithUser extends Request {
@@ -87,7 +87,7 @@ export default (dependencies: { Authentication: any; }) => {
 
         const cookies = req.cookies;
 
-        if (!cookies && !cookies.Authorization) return res.status(403).json("Access denied.");
+        if (!cookies && !cookies.Authorization) return res.status(403).json('Access denied.');
 
         const token = cookies.Authorization;
 
@@ -97,7 +97,7 @@ export default (dependencies: { Authentication: any; }) => {
         try {
             const userDecoded = await verifyAccessCommand(token);
             req.user = userDecoded;
-            //if (!userDecoded) return res.status(403).json("This token is not valid for this ID.");
+            //if (!userDecoded) return res.status(403).json('This token is not valid for this ID.');
             next();
         } catch (error) {
             next(error);

@@ -1,6 +1,7 @@
-import { Message } from "../models/message";
+import { Request, Response } from 'express';
+import { Message } from '../models/message';
 
-export const getPersonalConversation = async( req: any, res: any ) => {
+export const getPersonalConversation = async (req: any, res: Response ) => {
 
     const myId = req.uid;
     const messageFrom = req.params.from;
@@ -21,7 +22,7 @@ export const getPersonalConversation = async( req: any, res: any ) => {
 
 }
 
-export const getChannelConversation = async( req: any, res: any ) => {
+export const getChannelConversation = async (req: Request, res: Response ) => {
 
     const channel = req.params.from;
 

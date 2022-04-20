@@ -1,8 +1,7 @@
-import { User } from "../models/user";
-import { Message } from "../models/message";
+import { User } from '../models/user';
+import { Message } from '../models/message';
 
 export const userConnected = async( uid: any ) => {
-
     const user: any = await User.findById(uid);
     user.online = true;
     await user.save();
@@ -20,13 +19,12 @@ export const userDisconnected = async( uid: any ) => {
 
 
 export const getUsers = async() => {
-
     const users = await User
         .find()
         .sort('-online');
 
     return users;
-}
+};
 
 export const saveMessage = async( payload: any ) => {
     
@@ -40,6 +38,5 @@ export const saveMessage = async( payload: any ) => {
     } catch (error) {
         console.log(error);
         return false;
-    }
-
-}
+    };
+};

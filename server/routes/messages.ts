@@ -1,9 +1,9 @@
 /*
     Path: api/messages
 */
-import { Router } from "express";
-import { getPersonalConversation, getChannelConversation } from "../controllers/MessageController";
-import { validateJWT } from "../middlewares/auth";
+import { Router } from 'express';
+import { getPersonalConversation, getChannelConversation } from '../controllers/MessageController';
+import { validateJWT } from '../middlewares/auth';
 
 const router = Router();
 

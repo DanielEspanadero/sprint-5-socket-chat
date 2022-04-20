@@ -1,5 +1,5 @@
 import { userConnected, userDisconnected, saveMessage, getUsers } from '../controllers/SocketController';
-import { checkToken } from "../helpers/jwt";
+import { checkToken } from '../helpers/jwt';
 import { socketEvents } from '../config/socketEvents';
 import { createChannel, channelsList } from '../controllers/ChannelController';
 

@@ -1,5 +1,6 @@
-import { Channel } from "../models/channel";
-import { User } from "../models/user";
+import { Request, Response } from 'express';
+import { Channel } from '../models/channel';
+import { User } from '../models/user';
 
 
 export async function createChannel(payload: any) {
@@ -10,12 +11,12 @@ export async function createChannel(payload: any) {
 			const isChannelExist = await Channel.findOne({ name });
 	
 			if (isChannelExist) {
-				console.log("Name already in use");
+				console.log('Name already in use');
 				return;
 			}
 	
 			const channel:any = new Channel({name});
-			channel.type = "channel";
+			channel.type = 'channel';
 			await channel.save();
 	
 			return channel;
@@ -25,12 +26,12 @@ export async function createChannel(payload: any) {
 		}
 }
 
-export async function getUserName(req: any, res: any) {
+export async function getUserName(req: Request, res: Response) {
 		try {
 			const id = req.params.id;
 			const user = await User.findById(id);
 			if (!user) {
-				return res.status(404).json({ ok: false, msg: "User not found" });
+				return res.status(404).json({ ok: false, msg: 'User not found' });
 			}
 	
 			return res.json({
@@ -48,7 +49,7 @@ export const getChannels = async () => {
 		return channels;
 };
 	
-export async function getChannel(req: any, res: any) {
+export async function getChannel(req: Request, res: Response) {
 		try {
 			const name = req.params.name;
 	
@@ -66,7 +67,7 @@ export async function getChannel(req: any, res: any) {
 			}
 		} catch (err) {
 			console.log(err);
-			res.status(500).json({ ok: false, msg: "Something went wrong" });
+			res.status(500).json({ ok: false, msg: 'Something went wrong' });
 			return false;
 		}
 	}

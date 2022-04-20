@@ -1,14 +1,12 @@
-import { response, request } from "express";
-import { genSaltSync, hashSync, compareSync } from "bcrypt";
-import { User } from "../models/user";
-import { getToken } from "../helpers/jwt";
-import { getProfileInfo } from "../utils/google";
-import { ERROR_MESSAGES } from "../utils/errorConstants";
+import { Response, Request } from 'express';
+import { genSaltSync, hashSync, compareSync } from 'bcrypt';
+import { User } from '../models/user';
+import { getToken } from '../helpers/jwt';
+import { getProfileInfo } from '../utils/google';
+import { ERROR_MESSAGES } from '../utils/errorConstants';
 
-export const GoogleLogin = async(req: any, res = response) => {
-
+export const GoogleLogin = async(req: Request, res: Response) => {
     try {
-
         const code = req.body.code;
         const profile: any = await getProfileInfo(code);
 
@@ -21,18 +19,14 @@ export const GoogleLogin = async(req: any, res = response) => {
         // If the found user has the same google id, we create token
 
         if(userDB && userDB.auth.id === sub ) {
-
             const token = await getToken( userDB._id );
-
             return res.json({
                 ok: true,
                 user: userDB,
                 token
             });
-
         };
 
-        
         // If the user does not exist in the database, we create it
 
         const user: any = new User( {
@@ -41,7 +35,7 @@ export const GoogleLogin = async(req: any, res = response) => {
             email: profile.email,
             avatar: profile.picture,
             auth: {
-                type: "Google",
+                type: 'Google',
                 id: profile.sub
             }
         } );
@@ -69,7 +63,7 @@ export const GoogleLogin = async(req: any, res = response) => {
 
 
 
-export const createUser = async(req: any, res = response) => {
+export const createUser = async (req: Request, res: Response) => {
     
     try {
         
@@ -112,7 +106,7 @@ export const createUser = async(req: any, res = response) => {
 
 
 // login
-export const login = async(req: any, res: any) => {
+export const login = async (req: Request, res: Response) => {
 
     const {  email, password } = req.body;
 
@@ -147,13 +141,12 @@ export const login = async(req: any, res: any) => {
             ok: false,
             msg: 'Internal Error'
         });
-    }
-
-}
+    };
+};
 
 
 // renewToken
-export const renewToken = async(req: any, res: any) => {
+export const renewToken = async (req: any, res: Response) => {
 
     const uid = req.uid;
 
@@ -167,6 +160,6 @@ export const renewToken = async(req: any, res: any) => {
         ok: true,
         user,
         token,
-    })
-}
+    });
+};
 

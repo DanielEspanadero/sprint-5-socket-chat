@@ -1,4 +1,4 @@
-import { sign, verify, Secret} from "jsonwebtoken";
+import { sign, verify, Secret} from 'jsonwebtoken';
 
 
 export const getToken = ( uid: string ) => {
@@ -38,7 +38,7 @@ export const checkToken = ( token: string    ) => {
         return [ true, payload.uid ];
 
     } catch (error : any) {
-        console.log("err", error.message, token);
+        console.log('err', error.message, token);
         return [ false, null ];
     }
 
