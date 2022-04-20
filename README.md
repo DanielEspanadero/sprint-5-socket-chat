@@ -2,7 +2,7 @@
 
 ## Special mention 🙏🏻
 
-_This chat and learning about sockets that have given me so much headache, I have learned thanks to a course by [Fernando Herrera](https://github.com/Klerith) on Udemy called ['React: Real-time applications with Socket.io'](https://www.udemy.com/course/react-socket-io-fernando/), where he does different projects using socket such as a queuing application, real-time maps and chat._
+_This chat and learning about sockets that have given me so much headache, I have learned thanks to a course by [Fernando Herrera](https://github.com/Klerith) on Udemy called [React: Real-time applications with Socket.io](https://www.udemy.com/course/react-socket-io-fernando/), where he does different projects using socket such as a queuing application, real-time maps and chat._
 _I also want to mention the mentor of this node.js bootcamp at [IT Academy](https://www.barcelonactiva.cat/es/itacademy#mesinfo) Barcelona, [Omar Olmedo](https://github.com/StratocasterO), who has been in charge of correcting and guiding us in all the sprints until we got here, having a very important role in making this chat._
 
 ## Starting 🚀
