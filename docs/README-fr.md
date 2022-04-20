@@ -45,8 +45,13 @@ _Pour utiliser les variables d'environnement et pour que tout fonctionne correct
 ⚠️ _AVANT DE COMMENCER, N'OUBLIEZ PAS DE FAIRE DÉMARRER LE SERVEUR MOGODB_ ⚠️
 
 _Une fois tous les programmes et dépendances nécessaires installés, exécutez simplement la commande suivante à la fois sur le frontend (Client) et le backend (Server):_
+_Server:_
 ```
 npm run dev
+```
+_Client:_
+```
+npm start
 ```
 
 ## Client 💻

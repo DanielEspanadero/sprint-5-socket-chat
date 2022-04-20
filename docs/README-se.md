@@ -45,8 +45,13 @@ _För att använda miljövariablerna och för att allt ska fungera korrekt måst
 ⚠️ _INNAN DU STARTAR, KOM IHÅG ATT HA MONGODB-SERVERN ATT STARTA_ ⚠️
 
 _När alla nödvändiga program och beroenden är installerade kör du helt enkelt följande kommando på både frontend (klient) och backend (server):_
+_Server:_
 ```
 npm run dev
+```
+_Client:_
+```
+npm start
 ```
 
 ## Kund 💻

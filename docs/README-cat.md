@@ -45,9 +45,14 @@ _Per utilitzar les variables d'entorn i que tot funcioni correctament, has de cr
 ⚠️ _ABANS DE COMENÇAR, RECORDA TENIR INICIAT EL SERVIDOR MONGODB_ ⚠️
 
 _Una vegada que tots els programes i dependències necessaris estiguin instal·lats, simplement executeu la següent ordre tant al frontend (Client) com al backend (Servidor):_
-````
+_Server:_
+```
 npm run dev
-````
+```
+_Client:_
+```
+npm start
+```
 
 ## Client 💻
 
