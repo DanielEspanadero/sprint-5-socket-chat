@@ -1,6 +1,6 @@
 import React from 'react';
-import { AuthProvider } from "./context/authContext";
-import { SocketProvider } from "./context/socketContext";
+import { AuthProvider } from "./context/AuthContext";
+import { SocketProvider } from "./context/SocketContext";
 import { AppRouter } from "./router/App";
 import { ChatProvider } from "./context/chat/chatContext";
 

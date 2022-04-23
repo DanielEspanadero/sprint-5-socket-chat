@@ -1,8 +1,8 @@
 import React, { useContext, useRef, useState } from 'react';
 
-import { AuthContext } from '../../../context/authContext';
+import { AuthContext } from '../../../context/AuthContext';
 import { ChatContext } from '../../../context/chat/chatContext';
-import { SocketContext } from '../../../context/socketContext';
+import { SocketContext } from '../../../context/SocketContext';
 import { Picker } from 'emoji-mart';
 import { socketEvents } from '../../../config/socketEvents';
 import 'emoji-mart/css/emoji-mart.css'

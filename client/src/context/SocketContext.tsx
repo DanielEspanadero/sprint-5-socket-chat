@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { createContext } from 'react';
 import { useSocket } from '../hooks/useSocket';
-import { AuthContext } from './authContext';
+import { AuthContext } from './AuthContext';
 import { Socket } from 'socket.io-client';
 import { ChatContext } from './chat/chatContext';
 import { types } from './types/types';

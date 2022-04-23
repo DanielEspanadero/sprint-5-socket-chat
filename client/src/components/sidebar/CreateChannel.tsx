@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import Swal from 'sweetalert2';
 import { socketEvents } from '../../config/socketEvents';
-import { SocketContext } from '../../context/socketContext';
+import { SocketContext } from '../../context/SocketContext';
 import { fetchWithToken } from '../../helpers/fetch';
 
 export const CreateChannel = () => {

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Google } from '../components/google/GoogleLogin';
 import Swal from 'sweetalert2';
-import { AuthContext } from '../context/authContext';
+import { AuthContext } from '../context/AuthContext';
 
 import '../css/loginPage.css'
 

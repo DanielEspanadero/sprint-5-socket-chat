@@ -162,4 +162,3 @@ export const renewToken = async (req: any, res: Response) => {
         token,
     });
 };
-

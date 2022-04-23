@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../../context/authContext';
+import { AuthContext } from '../../context/AuthContext';
 import { ChatContext } from '../../context/chat/chatContext';
 
 import { IncomingMessage } from './personalMessage/messages/IncomingMessage';
