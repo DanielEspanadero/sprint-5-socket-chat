@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import { ChatPage } from '../pages/ChatPage';
-import { AuthContext } from '../context/authContext';
+import { AuthContext } from '../context/AuthContext';
 import { PublicRoute } from './Public';
 import { PrivateRoute } from './Private';
 import { AuthRouter } from './Auth';

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { ChatContext } from '../../../context/chat/chatContext';
-import { SocketContext } from '../../../context/socketContext';
+import { SocketContext } from '../../../context/SocketContext';
 import { socketEvents } from '../../../config/socketEvents';
 
 export const HeaderBody = () => {

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { AuthContext } from '../../context/authContext'
+import { AuthContext } from '../../context/AuthContext'
 
 export const SidebarHeader = () => {
     const { auth, logout } = useContext(AuthContext);
