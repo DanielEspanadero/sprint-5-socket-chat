@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.ts",
   "scripts": {
-    "dev": "nodemon --config nodemon.json app.ts"
+    "dev": "nodemon --config nodemon.json app.ts",
+    "start": "node dist/app"
   },
   "keywords": [],
   "author": "",
